@@ -3,7 +3,13 @@ from django.views import View
 import json
 from .serializer import RegisterSerializer
 
-users=[]
+users=[{"firstName":"Vivek",
+        "lastName":"Mondal",
+        "email":"vivekmondal9@gmail.com",
+        "phone":7980183902,
+        "password":"vivekmondaL9@",
+        "confirmPassword":"vivekmondaL9@"
+        }]
 class RegistrationView(View):
     def post(self,request):
         user_data=json.loads(request.body)
@@ -14,7 +20,7 @@ class RegistrationView(View):
 
         if (user_serializer.is_valid()):
             for user in users:
-                if(user["Email"]==user_serializer.data["Email"]):
+                if(user["email"]==user_serializer.data["email"]):
                     # raise Http404("User is Already Registered!!")
                     return HttpResponseBadRequest("User is already registered!!")
                 
@@ -24,4 +30,15 @@ class RegistrationView(View):
             return JsonResponse(users,safe=False,status=200)
         else:
             return HttpResponseBadRequest()
+        
+class LoginView(View):
+    def post(self,request):
+        user_data=json.loads(request.body)
+        for index,item in enumerate(users):
+            if (user_data["email"]==item["email"] and user_data["password"]==item["password"]):
+                return JsonResponse("Login Successful",safe=False,status=200)
+            else:
+                raise Http404("Invalid Username Or Password!!")
+
+
     

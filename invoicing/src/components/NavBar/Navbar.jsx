@@ -1,5 +1,5 @@
 import './Navbar.css'
-import { useNavigate } from 'react-router-dom'
+import { json, useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
 
@@ -14,6 +14,18 @@ export default function Navbar() {
   function register() {
     navigate("/register")
   }
+
+  let logindetails
+  logindetails= localStorage.getItem("token");
+  // logindetails=JSON.parse(logindetails)
+  console.log(logindetails)
+
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.reload()
+  
+    
+}
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -47,8 +59,17 @@ export default function Navbar() {
         </div>
       </div>
       <div className='registration-sec'>
-        <button type="button" class="btn btn-primary" onClick={login}>Login</button>
-        <button type="button" class="btn btn-info" onClick={register}>Register</button>
+        {!logindetails &&
+        (
+          <><button type="button" class="btn btn-primary" onClick={login}>Login</button>
+          <button type="button" class="btn btn-info" onClick={register}>Register</button></>
+        )}
+        {logindetails &&
+        
+        (<>
+            <button type="button" class="btn btn-primary" onClick={logout}>Logout</button>
+        </>)}
+        
       </div>
     </nav>
   )
