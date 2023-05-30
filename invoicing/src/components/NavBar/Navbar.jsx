@@ -16,16 +16,15 @@ export default function Navbar() {
   }
 
   let logindetails
-  logindetails= localStorage.getItem("token");
-  // logindetails=JSON.parse(logindetails)
-  console.log(logindetails)
+  logindetails = localStorage.getItem("token");
 
   function logout() {
     localStorage.removeItem("token");
+    navigate("/login")
     window.location.reload()
-  
-    
-}
+
+
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -46,30 +45,45 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
-                Invoices
-              </a>
+              {logindetails &&
+                <a className="nav-link active" aria-current="page" href="/">
+                  Invoices
+                </a>
+              }
+              {!logindetails &&
+                <a className="nav-link in-active" aria-current="page" href="/login">
+                  Invoices
+                </a>
+              }
+
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/newInvoice">
-                New Invoice
-              </a>
+              {logindetails &&
+                <a className="nav-link" href="/newInvoice">
+                  New Invoice
+                </a>
+              }
+               {!logindetails &&
+                <a className="nav-link" href="/login">
+                  New Invoice
+                </a>
+              }
             </li>
           </ul>
         </div>
       </div>
       <div className='registration-sec'>
         {!logindetails &&
-        (
-          <><button type="button" class="btn btn-primary" onClick={login}>Login</button>
-          <button type="button" class="btn btn-info" onClick={register}>Register</button></>
-        )}
+          (
+            <><button type="button" class="btn btn-primary" onClick={login}>Login</button>
+              <button type="button" class="btn btn-info" onClick={register}>Register</button></>
+          )}
         {logindetails &&
-        
-        (<>
+
+          (<>
             <button type="button" class="btn btn-primary" onClick={logout}>Logout</button>
-        </>)}
-        
+          </>)}
+
       </div>
     </nav>
   )

@@ -16,7 +16,7 @@ export default function InvoiceList() {
             0,
           )
         })
-        console.log(invoices)
+        // console.log(invoices)
       })
   }, [])
 
