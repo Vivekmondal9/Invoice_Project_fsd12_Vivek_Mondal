@@ -12,3 +12,12 @@ class Registration(models.Model):
 class Login(models.Model):
     email=models.EmailField()
     password=models.CharField(max_length=50)    
+
+class Items(models.Model):
+    rate=models.DecimalField(max_digits=200,decimal_places=2)
+    quantity=models.IntegerField()
+
+class InvoiceModel(models.Model):
+    client_name=models.CharField(max_length=100)
+    date=models.DateField()
+    items=models.ForeignKey(Items,on_delete=models.CASCADE,related_name="items")

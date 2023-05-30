@@ -41,4 +41,27 @@ class LoginView(View):
                 raise Http404("Invalid Username Or Password!!")
 
 
+
+items=[{
+    "invoice_id":1,
+    "client_name":"Vivek Mondal",
+    "date":"Wed May 02 2023",
+    "items":[{"quantity":5,"rate":500}]
+
+}]           
+class InvoiceList(View):
+    def get(self,request):
+        return JsonResponse(items,safe=False)   
+
+
+class Itemadd(View):
+    def post(self,request):
+        item_detail=json.loads(request.body)
+        item_detail["invoice_id"]=len(items)+1
+
+        items.append(item_detail)
+
+        return JsonResponse(items,safe=False)
+
+
     
