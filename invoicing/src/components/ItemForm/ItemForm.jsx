@@ -16,7 +16,7 @@ export default function ItemForm() {
       },
     }).then((res) => navigate('/' + id))
   }
-
+  console.log(newItem)
   return (
     <div className="container">
       <Navbar />

@@ -46,7 +46,7 @@ items=[{
     "invoice_id":1,
     "client_name":"Vivek Mondal",
     "date":"Wed May 02 2023",
-    "items":[{"quantity":5,"rate":500}]
+    "items":[{"desc":"This a very good Cosmetic Product.","quantity":5,"rate":500}]
 
 }]           
 class InvoiceList(View):
@@ -62,6 +62,41 @@ class Itemadd(View):
         items.append(item_detail)
 
         return JsonResponse(items,safe=False)
+
+class ItemwithId(View):
+    def get(self,request,invoice_id):
+        itemfound=None
+
+        
+        
+        for item in items:
+            if(item["invoice_id"]==invoice_id):
+                itemfound=item
+                break
+        if itemfound:
+            return JsonResponse(itemfound,safe=False,status=200)
+        else:
+            raise Http404("Item Not Found!!")    
+               
+            
+class NewItemAdd(View):
+    def post(self,request,invoice_id):
+        data=json.loads(request.body)
+        itemfound=None
+        for item in items:
+            if (item["invoice_id"]==invoice_id):
+                itemfound=item
+                break
+        if itemfound:    
+            # itemfound.=len(itemfound)+1
+            itemfound["items"].append(data)
+            
+            return JsonResponse(itemfound,safe=False)
+        else:
+            raise Http404()
+
+                
+               
 
 
     

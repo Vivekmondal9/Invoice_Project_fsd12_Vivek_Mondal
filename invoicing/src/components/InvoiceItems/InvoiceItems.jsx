@@ -8,7 +8,7 @@ export default function InvoiceForm() {
   const [invoice, setInvoice] = useState({})
   const [totalAmount, setTotalAmount] = useState(0)
   const params = useParams()
-
+  
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/invoices/' + params.id)
       .then((res) => res.json())
@@ -24,12 +24,12 @@ export default function InvoiceForm() {
             },
             0,
           )
-          console.log(totalPrice)
+      
           setTotalAmount(totalPrice)
         }
       })
   }, [])
-
+  // console.log(invoice)
   return (
     <div className="container">
       <Navbar />

@@ -14,6 +14,7 @@ class Login(models.Model):
     password=models.CharField(max_length=50)    
 
 class Items(models.Model):
+    desc=models.TextField()
     rate=models.DecimalField(max_digits=200,decimal_places=2)
     quantity=models.IntegerField()
 
