@@ -13,6 +13,11 @@ class Login(models.Model):
     email=models.EmailField()
     password=models.CharField(max_length=50)    
 
+class ResetPassword(models.Model):
+    email=models.EmailField()
+    password=models.CharField(max_length=50) 
+
+
 class Items(models.Model):
     desc=models.TextField()
     rate=models.DecimalField(max_digits=200,decimal_places=2)

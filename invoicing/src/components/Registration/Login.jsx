@@ -89,8 +89,11 @@ function Login() {
                             </Formik>
                             <br />
                             <p className="text-center">
-                        New user? <Link to="/register">Click here</Link>
-                    </p>
+                            New user? <Link to="/register">Click here</Link>
+                            </p>
+                            <p className="text-center">
+                            Forget Password? <Link to="/forgetpassword">Click here</Link>
+                            </p>
 
 
                         </div>

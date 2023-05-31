@@ -31,6 +31,28 @@ class RegistrationView(View):
         else:
             return HttpResponseBadRequest()
         
+class ResetPssword(View):
+    def put(self,request):
+        user_data=json.loads(request.body)
+
+        
+
+        
+        password_update=None
+
+        for index,item in enumerate(users):
+            if(item["email"]==user_data["email"]):
+                password_update=user_data
+                break
+        if(password_update):
+            users[index]["password"]=password_update["password"]
+            users[index]["confirmPassword"]=password_update["password"]
+            return JsonResponse(users,safe=False,status=200)
+        
+        return HttpResponseBadRequest()    
+
+
+        
 class LoginView(View):
     def post(self,request):
         user_data=json.loads(request.body)

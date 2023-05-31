@@ -7,6 +7,7 @@ import InvoiceItems from "./components/InvoiceItems/InvoiceItems";
 import ItemForm from "./components/ItemForm/ItemForm";
 import Login from './components/Registration/Login';
 import RegistrationPage from './components/Registration/Registration';
+import ForgetPassword from './components/Registration/ForgetPassword';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<RegistrationPage></RegistrationPage>}></Route>
+        <Route path='/forgetpassword' element={<ForgetPassword></ForgetPassword>}></Route>
       </Routes>
       </BrowserRouter>
     </div>
